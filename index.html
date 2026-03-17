@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="vi">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="color-scheme" content="dark light" />
+
+    <title>Todo App</title>
+    <meta name="description" content="Todo app: thêm, sửa, xóa task. Giao diện hiện đại, cân giữa màn hình." />
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Bỏ qua đến nội dung</a>
+
+    <main id="main" class="page">
+      <div class="shell" role="application" aria-label="Todo App">
+        <header class="top">
+          <div class="brand">
+            <div class="mark" aria-hidden="true"></div>
+            <div class="brand-text">
+              <div class="title">Todo</div>
+              <div class="subtitle">Tập trung. Rõ ràng. Làm xong.</div>
+            </div>
+          </div>
+
+          <div class="stats" aria-label="Thống kê">
+            <div class="stat">
+              <div class="stat-label">Tổng</div>
+              <div class="stat-value" data-stat-total>0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Đang làm</div>
+              <div class="stat-value" data-stat-active>0</div>
+            </div>
+            <div class="stat">
+              <div class="stat-label">Hoàn thành</div>
+              <div class="stat-value" data-stat-done>0</div>
+            </div>
+          </div>
+        </header>
+
+        <section class="card composer" aria-label="Thêm task">
+          <form class="row" data-add-form>
+            <label class="field grow">
+              <span class="sr-only">Nội dung task</span>
+              <input
+                name="title"
+                autocomplete="off"
+                inputmode="text"
+                placeholder="Nhập task và nhấn Enter…"
+                maxlength="140"
+                required
+              />
+            </label>
+            <button class="btn primary" type="submit">Thêm</button>
+          </form>
+
+          <div class="toolbar" aria-label="Bộ lọc và tìm kiếm">
+            <div class="segmented" role="tablist" aria-label="Lọc trạng thái">
+              <button class="seg" type="button" role="tab" aria-selected="true" data-filter="all">Tất cả</button>
+              <button class="seg" type="button" role="tab" aria-selected="false" data-filter="active">Đang làm</button>
+              <button class="seg" type="button" role="tab" aria-selected="false" data-filter="done">Hoàn thành</button>
+            </div>
+
+            <label class="field search">
+              <span class="sr-only">Tìm kiếm</span>
+              <span class="icon" aria-hidden="true">⌕</span>
+              <input name="q" data-search autocomplete="off" placeholder="Tìm nhanh…" />
+            </label>
+
+            <div class="actions">
+              <button class="btn ghost" type="button" data-clear-done>Clear done</button>
+              <button class="btn ghost danger" type="button" data-clear-all>Xóa tất cả</button>
+            </div>
+          </div>
+        </section>
+
+        <section class="card list" aria-label="Danh sách task">
+          <div class="list-head">
+            <div class="muted" data-list-caption>0 task</div>
+            <div class="hint muted">Mẹo: double‑click để sửa • Enter lưu • Esc hủy</div>
+          </div>
+
+          <div class="bucket" data-bucket-active>
+            <div class="bucket-head">
+              <div class="bucket-title">Đang làm</div>
+              <div class="bucket-meta muted" data-bucket-active-count>0</div>
+            </div>
+            <ul class="items" data-list-active></ul>
+            <div class="empty small" data-empty-active hidden>
+              <div class="empty-sub">Chưa có task đang làm.</div>
+            </div>
+          </div>
+
+          <div class="bucket" data-bucket-done>
+            <div class="bucket-head">
+              <div class="bucket-title">Hoàn thành</div>
+              <div class="bucket-meta muted" data-bucket-done-count>0</div>
+            </div>
+            <ul class="items" data-list-done></ul>
+            <div class="empty small" data-empty-done hidden>
+              <div class="empty-sub">Chưa có task hoàn thành.</div>
+            </div>
+          </div>
+
+          <div class="empty" data-empty-all hidden>
+            <div class="empty-title">Chưa có task nào.</div>
+            <div class="empty-sub">Thêm task đầu tiên để bắt đầu.</div>
+          </div>
+        </section>
+
+        <footer class="foot muted">
+          <span>Todo App • Lưu tự động vào máy (localStorage)</span>
+        </footer>
+      </div>
+    </main>
+
+    <dialog class="modal" data-edit-modal aria-label="Sửa task">
+      <form method="dialog" class="modal-card" data-edit-form>
+        <div class="modal-head">
+          <div class="modal-title">Sửa task</div>
+          <button class="icon-btn" value="cancel" aria-label="Đóng">×</button>
+        </div>
+
+        <label class="field">
+          <span class="sr-only">Nội dung mới</span>
+          <input name="title" maxlength="140" required />
+        </label>
+
+        <div class="modal-actions">
+          <button class="btn ghost" value="cancel" type="button" data-edit-cancel>Hủy</button>
+          <button class="btn primary" value="default" type="submit">Lưu</button>
+        </div>
+      </form>
+    </dialog>
+
+    <div class="toast" role="status" aria-live="polite" data-toast hidden></div>
+    <script src="./script.js"></script>
+  </body>
+</html>
+
