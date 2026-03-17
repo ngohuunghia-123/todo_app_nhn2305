@@ -3,6 +3,7 @@
 Todo app giao diện hiện đại, khung nội dung **cân giữa màn hình**, có đủ chức năng **thêm / sửa / xóa** task (kèm lọc + tìm kiếm) và **lưu tự động** vào `localStorage`.
 
 ## Chạy ứng dụng
+Trên web: https://todoapp-six-sable.vercel.app/
 
 ### Cách 1: Mở trực tiếp
 - Mở file `todo_app/index.html` bằng trình duyệt.
